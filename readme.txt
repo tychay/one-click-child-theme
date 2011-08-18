@@ -10,6 +10,8 @@ Adds a Theme option to any active theme allowing you to make a child theme.
 
 == Description ==
 
+[Plugin homepage](http://terrychay.com/wordpress-plugins/one-click-child-theme).
+
 Useful for shared hosts, this allows you to easily create child themes from any
 theme just by clicking.
 
@@ -24,7 +26,9 @@ usually involves a “shell account” or learning how to use FTP).
 This attempts to get around that issue, by adding a button to the themes page to allow
 you to child theme the page. (It’s not really one-click, though.)
 
-Inspired by @janeforshort‘s WordPress talk on CSS theming as requested by @sfgirl.
+Inspired by @janeforshort‘s and @designsimply's WordCamp SF 2011 talk on CSS theming
+as requested by @sfgirl for [her blog](http://pintsizedmusings.com/).
+
 == Installation ==
 
 ###Installing The Plugin###
@@ -42,6 +46,9 @@ have a new submenu called "Child Theme". Clicking on this gives you a form that 
 allow you to create a child theme based on the current active theme.
 
 == ChangeLog ==
+
+**Version 1.0.1**
+* Commenting changes.
 
 **Version 1.0**
 
