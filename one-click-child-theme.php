@@ -3,7 +3,7 @@
 
 Plugin Name:  One-Click Child Theme
 Plugin URI:   http://terrychay.com/wordpress-plugins/one-click-child-theme
-Version:      1.0.1
+Version:      1.1
 Description:  Allows you to easily child theme any theme from the theme
 			  options on the wp-admin instead of going into shell or
   			  using FTP.
