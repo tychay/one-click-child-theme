@@ -47,6 +47,9 @@ allow you to create a child theme based on the current active theme.
 
 == ChangeLog ==
 
+**Version 1.1**
+* Added RTL support
+
 **Version 1.0.1**
 * Commenting changes.
 
@@ -57,7 +60,9 @@ allow you to create a child theme based on the current active theme.
 
 == Future Features ==
 
-* No support for RTL compatible themes
 * No support for multiple theme directories
 * Error support is spotty at best
 * Theme may be created, but it is not network enabled on multisite
+* Use Theme_Upgrader/WP_Upgrader to figure out what files you trashed and ported them
+* Add an "add file" button the the editor to allow you to edit any file.
+* "add file" should be able to include() file's from the parent.

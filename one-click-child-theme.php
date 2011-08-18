@@ -3,7 +3,7 @@
 
 Plugin Name:  One-Click Child Theme
 Plugin URI:   http://terrychay.com/wordpress-plugins/one-click-child-theme
-Version:      1.0
+Version:      1.0.1
 Description:  Allows you to easily child theme any theme from the theme
 			  options on the wp-admin instead of going into shell or
   			  using FTP.
@@ -66,6 +66,16 @@ class OneClickChildTheme {
 				require $this->plugin_dir.'/child-theme-css.php';
 				$css = ob_get_clean();
 				file_put_contents( $theme_path.'/style.css', $css );
+
+				// RTL support
+				$rtl_theme = ( file_exists( $theme_root.'/'.$parent_theme.'/rtl.css' ) )
+					? $parent_theme
+					: 'twentyeleven'; //use the latest default theme rtl file
+				ob_start();
+				require $this->plugin_dir.'/rtl-css.php';
+				$css = ob_get_clean();
+				file_put_contents( $theme_path.'/rtl.css', $css );
+
 				switch_theme( $parent_template, $theme_dir );
 				printf( __('<a href="%s">Theme switched!</a>', 'one-click-child-theme'), admin_url( 'themes.php' ) );
 				//wp_redirect( admin_url('themes.php') ); //buffer issue :-(
