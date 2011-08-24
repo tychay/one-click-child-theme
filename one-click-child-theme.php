@@ -3,7 +3,7 @@
 
 Plugin Name:  One-Click Child Theme
 Plugin URI:   http://terrychay.com/wordpress-plugins/one-click-child-theme
-Version:      1.1
+Version:      1.2
 Description:  Allows you to easily child theme any theme from the theme
 			  options on the wp-admin instead of going into shell or
   			  using FTP.
@@ -41,9 +41,6 @@ class OneClickChildTheme {
 	 * Show the theme page which has a form allowing you to child theme currently selected theme.
 	 */
 	function showThemePage() {
-		$parent_theme_name = get_current_theme();
-		$parent_template = get_template(); //Doesn't play nice with the grandkids
-		$parent_theme = get_stylesheet();
 
 		if ( !empty($_POST['theme_name']) ) {
 			$theme_name = $_POST['theme_name'];
@@ -53,35 +50,20 @@ class OneClickChildTheme {
 			$author_name = ( empty($_POST['author_name']) )
 				? ''
 				: $_POST['author_name'];
-			// Turn a theme name into a directory name
-			$theme_dir = sanitize_title( $theme_name );
-			$theme_root = get_theme_root();
-			// Validate theme name
-			$theme_path = $theme_root.'/'.$theme_dir;
-			if ( file_exists( $theme_path ) ) {
-				$error = 'Theme directory already exists!';
+			$result = $this->_make_child_theme( $theme_name, $description, $author_name );
+			if ( is_wp_error( $result ) ) {
+				$error = $result->get_error_message();
+				// $error is rendered below
 			} else {
-				mkdir( $theme_path );
-				ob_start();
-				require $this->plugin_dir.'/child-theme-css.php';
-				$css = ob_get_clean();
-				file_put_contents( $theme_path.'/style.css', $css );
-
-				// RTL support
-				$rtl_theme = ( file_exists( $theme_root.'/'.$parent_theme.'/rtl.css' ) )
-					? $parent_theme
-					: 'twentyeleven'; //use the latest default theme rtl file
-				ob_start();
-				require $this->plugin_dir.'/rtl-css.php';
-				$css = ob_get_clean();
-				file_put_contents( $theme_path.'/rtl.css', $css );
-
-				switch_theme( $parent_template, $theme_dir );
-				printf( __('<a href="%s">Theme switched!</a>', 'one-click-child-theme'), admin_url( 'themes.php' ) );
+				var_dump($result);
+				var_dump(switch_theme( $result['parent_template'], $result['new_theme'] ));
+				// TODO: put a redirect in here somehow?
 				//wp_redirect( admin_url('themes.php') ); //buffer issue :-(
+				printf( __('<a href="%s">Theme switched!</a>', 'one-click-child-theme'), admin_url( 'themes.php' ) );
 				exit;
 			}
 		}
+
 		if ( !isset($theme_name) ) { $theme_name = ''; }
 		if ( !isset($description) ) { $description = ''; }
 		if ( empty($author) ) {
@@ -92,9 +74,80 @@ class OneClickChildTheme {
 		require $this->plugin_dir.'/panel.php';
 	}
 
-}
-function hereiam() {
-		echo 'hello';
+	/**
+	 * Does the work to make a child theme based on the current theme.
+	 *
+	 * This currently supports the following files:
+	 *
+	 * 1. style.css: Follows the rules outlined in {@link http://codex.wordpress.org/Child_Themes the Codex}
+	 * 2. rtl.css: right to left language support, if not avaialble in parent, it
+	 *    uses TwentyEleven's rtl
+	 * 3. screenshot.png: screenshot if available in the parent
+	 *
+	 * @author terry chay <tychay@autoamttic.com>
+	 * @author Chris Robinson <http://contempographicdesign.com/> (for screenshot support).
+	 * @return array|WP_Error If successful, it returns a hash contianing
+	 * - new_theme: (directory) name of new theme
+	 * - parent_template: (directory) name of parent template
+	 * - parent_theme: (directory) name of parent theme
+	 * - new_theme_path: full path to the directory cotnaining the new theme
+	 * - new_theme_title: the name of the new theme
+	 */
+	private function _make_child_theme( $new_theme_title, $new_theme_description, $new_theme_author ) {
+		$parent_theme_title = get_current_theme();
+		$parent_theme_template = get_template(); //Doesn't play nice with the grandkids
+		$parent_theme_name = get_stylesheet();
+
+		// Turn a theme name into a directory name
+		$new_theme_name = sanitize_title( $new_theme_title );
+		$theme_root = get_theme_root();
+
+		// Validate theme name
+		$new_theme_path = $theme_root.'/'.$new_theme_name;
+		if ( file_exists( $new_theme_path ) ) {
+			return new WP_Error( 'exists', __( 'Theme directory already exists' ) );
+		}
+
+		mkdir( $new_theme_path );
+
+		// Make style.css
+		ob_start();
+		require $this->plugin_dir.'/child-theme-css.php';
+		$css = ob_get_clean();
+		file_put_contents( $new_theme_path.'/style.css', $css );
+
+		// RTL support
+		$rtl_theme = ( file_exists( $theme_root.'/'.$parent_theme_name.'/rtl.css' ) )
+			? $parent_theme_name
+			: 'twentyeleven'; //use the latest default theme rtl file
+		ob_start();
+		require $this->plugin_dir.'/rtl-css.php';
+		$css = ob_get_clean();
+		file_put_contents( $new_theme_path.'/rtl.css', $css );
+
+		// Copy screenshot
+		$parent_theme_screenshot = $theme_root.'/'.$parent_theme_name.'/screenshot.png';
+		if ( file_exists( $parent_theme_screenshot ) ) {
+			copy( $parent_theme_screenshot, $new_theme_path.'/screenshot.png' );
+		} elseif (file_exists( $parent_theme_screenshot = $theme_root.'/'.$parent_theme_template.'/screenshot.png' ) ) {
+			copy( $parent_theme_screenshot, $new_theme_path.'/screenshot.png' );
+		}
+
+		// Make child theme an allowed theme (network enable theme)
+		$allowed_themes = get_site_option( 'allowedthemes' );
+		$allowed_themes[ $new_theme_name ] = true;
+		update_site_option( 'allowedthemes', $allowed_themes );
+
+		return array(
+			'parent_template'    => $parent_theme_template,
+			'parent_theme'       => $parent_theme_name,
+			'new_theme'          => $new_theme_name,
+			'new_theme_path'     => $new_theme_path,
+			'new_theme_title'	 => $new_theme_title,
+		);
+
+	}
+
 }
 
 new OneClickChildTheme();

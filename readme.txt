@@ -1,7 +1,7 @@
 === One-Click Child Theme ===
 Contributors: tychay
 Donate link: http://www.kiva.org/lender/tychay
-Tags: birthday
+Tags: theme, child theme, shared hosting, css, custom themeing
 Requires at least: 3.0
 Tested up to: 3.2.1
 Stable tag: trunk
@@ -47,6 +47,12 @@ allow you to create a child theme based on the current active theme.
 
 == ChangeLog ==
 
+** Version 1.2 **
+* Remembers to network enable (activate) the theme after creation.
+* Added screenshot support (Thanks! Chris Robinson <http://contempographicdesign.com/>)
+* WP_Error handling
+* refactoring
+
 **Version 1.1**
 * Added RTL support
 
@@ -60,9 +66,9 @@ allow you to create a child theme based on the current active theme.
 
 == Future Features ==
 
-* No support for multiple theme directories
-* Error support is spotty at best
-* Theme may be created, but it is not network enabled on multisite
-* Use Theme_Upgrader/WP_Upgrader to figure out what files you trashed and ported them
+* Better support for grandchildren (should copy the files over)
 * Add an "add file" button the the editor to allow you to edit any file.
 * "add file" should be able to include() file's from the parent.
+* Support for multiple theme directories
+* Error support is spotty at best
+* Use Theme_Upgrader/WP_Upgrader to figure out what files user may have trashed and ported them
