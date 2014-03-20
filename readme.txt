@@ -10,7 +10,7 @@ Adds a Theme option to any active theme allowing you to make a child theme.
 
 == Description ==
 
-[Plugin homepage](http://terrychay.com/wordpress-plugins/one-click-child-theme).
+Please visit the [plugin homepage](http://terrychay.com/wordpress-plugins/one-click-child-theme).
 
 Useful for shared hosts, this allows you to easily create child themes from any
 theme just by clicking.
@@ -41,22 +41,28 @@ the plugin. That's it!
 
 ###Using the plugin###
 
-If you have teh capability to install themes in your admin, then the themes menu will
+If you have the capability to install themes in your admin, then the themes menu will
 have a new submenu called "Child Theme". Clicking on this gives you a form that will
 allow you to create a child theme based on the current active theme.
 
 == ChangeLog ==
 
-** Version 1.2 **
+**Version 1.3**
+* Copy themes over
+
+**Version 1.2**
+
 * Remembers to network enable (activate) the theme after creation.
 * Added screenshot support (Thanks! Chris Robinson <http://contempographicdesign.com/>)
 * WP_Error handling
-* refactoring
+* Refactored codebase
 
 **Version 1.1**
+
 * Added RTL support
 
 **Version 1.0.1**
+
 * Commenting changes.
 
 **Version 1.0**
@@ -71,4 +77,5 @@ allow you to create a child theme based on the current active theme.
 * "add file" should be able to include() file's from the parent.
 * Support for multiple theme directories
 * Error support is spotty at best
+* UI is ugly/terrible (no redirect)
 * Use Theme_Upgrader/WP_Upgrader to figure out what files user may have trashed and ported them
