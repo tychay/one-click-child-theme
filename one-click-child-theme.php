@@ -3,7 +3,7 @@
 
 Plugin Name:  One-Click Child Theme
 Plugin URI:   http://terrychay.com/wordpress-plugins/one-click-child-theme
-Version:      1.2
+Version:      1.4
 Description:  Allows you to easily child theme any theme from the theme
 			  options on the wp-admin instead of going into shell or
   			  using FTP.
@@ -11,7 +11,7 @@ Author:       tychay
 Author URI:   http://terrychay.com/
 
 **************************************************************************/
-/*  Copyright 2011  terry chay  (email : tychay@automattic.com)
+/*  Copyright 2011-2015  terry chay  (email : tychay@php.net)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -30,7 +30,8 @@ class OneClickChildTheme {
 	private $plugin_dir = '';
 	function __construct() {
 		$this->plugin_dir = dirname(__FILE__);
-		// it has to be buried liek this or you get an error "You do not have sufficient permissions to access this page"
+		// it has to be buried like this or you get an error:
+		//  "You do not have sufficient permissions to access this page"
 		add_filter( 'admin_menu', array( $this, 'createMenu' ) );
 	}
 	function createMenu() {
@@ -38,7 +39,8 @@ class OneClickChildTheme {
 	}
 
 	/**
-	 * Show the theme page which has a form allowing you to child theme currently selected theme.
+	 * Show the theme page which has a form allowing you to child theme
+	 * currently selected theme.
 	 */
 	function showThemePage() {
 
@@ -80,9 +82,12 @@ class OneClickChildTheme {
 	 * This currently supports the following files:
 	 *
 	 * 1. style.css: Follows the rules outlined in {@link http://codex.wordpress.org/Child_Themes the Codex}
-	 * 2. rtl.css: right to left language support, if not avaialble in parent, it
-	 *    uses TwentyEleven's rtl
-	 * 3. screenshot.png: screenshot if available in the parent
+	 * 2. function.php: Followed the updated rules outlined in the Codex. Note
+	 * 	  that since WordPress ?.? functions.php hierarchy is automatically
+	 * 	  included.
+	 * 3. rtl.css: right to left language support, if not avaialble in parent, it
+	 *    uses TwentyFifteen's rtl
+	 * 4. screenshot.png: screenshot if available in the parent
 	 *
 	 * @author terry chay <tychay@autoamttic.com>
 	 * @author Chris Robinson <http://contempographicdesign.com/> (for screenshot support).
@@ -116,10 +121,13 @@ class OneClickChildTheme {
 		$css = ob_get_clean();
 		file_put_contents( $new_theme_path.'/style.css', $css );
 
+		// Copy functions.php
+		copy( $this->plugin_dir.'/functions.php', $new_theme_path.'/functions.php' );
+
 		// RTL support
 		$rtl_theme = ( file_exists( $theme_root.'/'.$parent_theme_name.'/rtl.css' ) )
 			? $parent_theme_name
-			: 'twentyeleven'; //use the latest default theme rtl file
+			: 'twentyfifteen'; //use the latest default theme rtl file
 		ob_start();
 		require $this->plugin_dir.'/rtl-css.php';
 		$css = ob_get_clean();
