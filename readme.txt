@@ -65,22 +65,32 @@ You can wait for the theme to get updated and have it break it, of you can:
 5. Select the child theme you created to the drop down in the left (you should be editing `style.css`).
 6. Paste your changes to the end of the file.
 
-== Future Features ==
+= What does the "Repair Child Theme" button do? =
 
-* Better support for grandchildren (should copy the files over)
+WordPress changed the [recommended way of handling parent references in child themes][http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme]. if this plugin detected 
+the child theme was done in the old style, it shows this button. Clicking on it
+will make the plugin attempt a repair into the new style.
+
+== TODO List ==
+
 * Add an "add file" button the the editor to allow you to edit any file.
-* "add file" should be able to include() file's from the parent.
-* Support for multiple theme directories
+* There is a buffering issue with form handling occurring so late, fix that.
+* In some cases, settings_error() can be shown twice. Remove settings_error() after buffering fixed
+* Better support for grandchildren (should copy the files over)
+* Support for multiple theme directories [ may be fixed ]
 * Error support is spotty at best
-* UI is ugly/terrible (no redirect)
+* Add a redirect to the theme page on completion (buffering issue needs fixed first)
 * Use Theme_Upgrader/WP_Upgrader to figure out what files user may have trashed and ported them
 
 == ChangeLog ==
 
 **Version 1.5**
 
-* upgrade look of form to resemble most admin forms
-* added Section for FAQ and Screenshots
+* Added ability to repair child theme
+* Upgrade look of form to resemble most admin forms.
+* Properly shows a status message on success.
+* Added section for FAQ and Screenshots.
+* Some housecleaning of filesystem structure of plugin
 
 **Version 1.4**
 

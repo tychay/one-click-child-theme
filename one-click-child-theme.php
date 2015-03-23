@@ -44,37 +44,25 @@ class OneClickChildTheme {
 	 */
 	function showThemePage() {
 
-		if ( !empty($_POST['theme_name']) ) {
-			$theme_name = $_POST['theme_name'];
-			$description = ( empty($_POST['description']) )
-				? ''
-				: $_POST['description'];
-			$author_name = ( empty($_POST['author_name']) )
-				? ''
-				: $_POST['author_name'];
-			$result = $this->_make_child_theme( $theme_name, $description, $author_name );
-			if ( is_wp_error( $result ) ) {
-				$error = $result->get_error_message();
-				// $error is rendered below
-			} else {
-				//var_dump($result);
-				switch_theme( $result['parent_template'], $result['new_theme'] );
-				add_settings_error(
-					'',
-					'one-click-child-theme',
-					sprintf(__('<a href="%s">Theme switched!</a>', 'one-click-child-theme'),
-						admin_url( 'themes.php' )
-					),
-					'updated'
-				);
-				//add_action( 'admin_notices', array('OneClickChildTheme','adminNoticeThemeCreated') );
-				// TODO: put a redirect in here somehow?
-				//wp_redirect( admin_url('themes.php') ); //buffer issue :-(
-				//printf( __('<a href="%s">Theme switched!</a>', 'one-click-child-theme'), admin_url( 'themes.php' ) );
-				//exit;
+		if ( !empty($_POST['cmd'])) {
+			// Handle Make Child Theme form
+			if ( strcmp($_POST['cmd'],'create_child_theme') == 0 ) {
+				$this->_handle_create_child_form();
+				return;
+			}
+			// Handle one-click repair form
+			if ( strcmp($_POST['cmd'],'repair_child_theme') == 0 ) {
+				$this->_handle_repair_child_theme();
+				return;
 			}
 		}
 
+		if ( is_child_theme() ) {
+			$this->_show_child_already_form( $this->_child_theme_needs_repair() );
+			return;
+		}
+
+		// Default behavior: not a child, interested in child themeing
 		if ( !isset($theme_name) ) { $theme_name = ''; }
 		if ( !isset($description) ) { $description = ''; }
 		if ( empty($author) ) {
@@ -82,7 +70,143 @@ class OneClickChildTheme {
 			get_currentuserinfo();
 			$author = $current_user->display_name;
 		}
-		require $this->plugin_dir.'/panel.php';
+		require $this->plugin_dir.'/templates/create_child_form.php';
+	}
+
+	/**
+	 * Show the "is child already" template.
+	 * @param  boolean $child_needs_repair whether or not child theme needs repair
+	 */
+	private function _show_child_already_form($child_needs_repair) {
+		require $this->plugin_dir.'/templates/is_child_already.php';
+		//TODO: handle grandchildren
+	}
+	/**
+	 * Handle the create_child_theme form.
+	 */
+	private function _handle_create_child_form() {
+		$theme_name = $_POST['theme_name'];
+		$description = ( empty($_POST['description']) )
+			? ''
+			: $_POST['description'];
+		$author_name = ( empty($_POST['author_name']) )
+			? ''
+			: $_POST['author_name'];
+		$result = $this->_make_child_theme( $theme_name, $description, $author_name );
+		if ( is_wp_error( $result ) ) {
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				$result->get_error_message(),
+				'error'
+			);
+			require $this->plugin_dir.'/templates/create_child_form.php';
+		} else {
+			switch_theme( $result['parent_template'], $result['new_theme'] );
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				sprintf(__('<a href="%s">Theme switched!</a>', 'one-click-child-theme'), admin_url( 'themes.php' ) ),
+				'updated'
+			);
+			$this->_show_child_already_form(false);
+			// TODO: put a redirect in here somehow?
+			//wp_redirect( admin_url('themes.php') ); //buffer issue :-(
+			//exit;
+		}
+	}
+
+	/**
+	 * Handle the repair_child_theme form.
+	 */
+	private function _handle_repair_child_theme()
+	{
+		$child_theme_dir = get_stylesheet_directory();
+		$functions_file = $child_theme_dir.'/functions.php';
+		$style_file = $child_theme_dir.'/style.css';
+
+		// create functions.php if it doesn't exist yet
+		if ( !file_exists($functions_file) ) {
+			if ( !touch($functions_file) ) {
+				add_settings_error(
+					'',
+					'one-click-child-theme',
+					sprintf( __('Failed to create file: %s', 'one-click-child-theme'), $functions_file ),
+					'error'
+				);
+				// fixing is hopeless if we can't create the file
+				return;
+			}
+		}
+
+		// read in style.css
+		$style_text = file_get_contents( $style_file );
+		// prune out old rules
+		$style_text = preg_replace(
+			'!@import\s+url\(\s?["\']\.\./.*/style.css["\']\s?\);!ims',
+			'',
+			$style_text
+		);
+		$style_text = preg_replace(
+			'!@import\s+url\(\s?["\']'.get_template_directory_uri().'/style.css["\']\s?\);!ims',
+			'',
+			$style_text
+		);
+		if ( file_put_contents( $style_file, $style_text) === false )	 {
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				sprintf( __('Failed edit to file: %s', 'one-click-child-theme'), $style_file ),
+				'error'
+			);
+			return;
+		}
+
+		// modify functions.php to prepend new rules
+		$functions_text = file_get_contents( $this->plugin_dir.'/templates/functions.php' );
+		// ^^^ above file has no carriage return and ending comment so it should
+		// "smash" the starting '<?php' string in any existing functions.php.
+		$functions_text .= file_get_contents( $functions_file );
+		if ( file_put_contents( $functions_file, $functions_text ) === false ) {
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				sprintf( __('Failed edit to file: %s', 'one-click-child-theme'), $functions_file ),
+				'error'
+			);
+		}
+		return;
+	}
+
+	/**
+	 * Detect if child theme needs repair.
+	 *
+	 * A child theme needs repair if it is missing a functions.php or the
+	 * style.css still has a rule that points to the parent.
+	 */
+	private function _child_theme_needs_repair()
+	{
+		$child_theme_dir = get_stylesheet_directory();
+		if ( !file_exists($child_theme_dir.'/functions.php') ) {
+			return true;
+		}
+		$style_text = file_get_contents( $child_theme_dir.'/style.css' );
+		// look for relative match (dificult to extract parent theme directory
+		// so I'll assume any in this path is parent theme)
+		if ( preg_match(
+			'!@import\s+url\(\s?["\']\.\./.*/style.css["\']\s?\);!ims',
+			$style_text
+			) ) {
+			return true;
+		}
+		// look for absolute match
+		if ( preg_match(
+			'!@import\s+url\(\s?["\']'.get_template_directory_uri().'/style.css["\']\s?\);!ims',
+			$style_text
+			) ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -91,7 +215,7 @@ class OneClickChildTheme {
 	 * This currently supports the following files:
 	 *
 	 * 1. style.css: Follows the rules outlined in {@link http://codex.wordpress.org/Child_Themes the Codex}
-	 * 2. function.php: Followed the updated rules outlined in the Codex. Note
+	 * 2. functions.php: Followed the updated rules outlined in the Codex. Note
 	 * 	  that since WordPress ?.? functions.php hierarchy is automatically
 	 * 	  included.
 	 * 3. rtl.css: right to left language support, if not avaialble in parent, it
@@ -126,19 +250,19 @@ class OneClickChildTheme {
 
 		// Make style.css
 		ob_start();
-		require $this->plugin_dir.'/child-theme-css.php';
+		require $this->plugin_dir.'/templates/child-theme-css.php';
 		$css = ob_get_clean();
 		file_put_contents( $new_theme_path.'/style.css', $css );
 
 		// Copy functions.php
-		copy( $this->plugin_dir.'/functions.php', $new_theme_path.'/functions.php' );
+		copy( $this->plugin_dir.'/templates/functions.php', $new_theme_path.'/functions.php' );
 
 		// RTL support
 		$rtl_theme = ( file_exists( $theme_root.'/'.$parent_theme_name.'/rtl.css' ) )
 			? $parent_theme_name
 			: 'twentyfifteen'; //use the latest default theme rtl file
 		ob_start();
-		require $this->plugin_dir.'/rtl-css.php';
+		require $this->plugin_dir.'/templates/rtl-css.php';
 		$css = ob_get_clean();
 		file_put_contents( $new_theme_path.'/rtl.css', $css );
 
