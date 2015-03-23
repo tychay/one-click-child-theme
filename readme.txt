@@ -87,6 +87,7 @@ will make the plugin attempt a repair into the new style.
 **Version 1.5**
 
 * Added ability to repair child theme
+* Added ability to copy any template file from parent theme.
 * Upgrade look of form to resemble most admin forms.
 * Properly shows a status message on success.
 * Added section for FAQ and Screenshots.
