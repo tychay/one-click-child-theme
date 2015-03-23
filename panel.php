@@ -4,6 +4,8 @@
  *
  * @author terry chay <tychay@php.net>
  */
+
+settings_errors();
 ?>
 <div class="wrap">
 
