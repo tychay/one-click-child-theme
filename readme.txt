@@ -73,8 +73,8 @@ will make the plugin attempt a repair into the new style.
 
 == TODO List ==
 
-* Add an "add file" button the the editor to allow you to edit any file.
-* There is a buffering issue with form handling occurring so late, fix that.
+* There is a buffering issue with form handling occurring so late, fix that. See https://codex.wordpress.org/Plugin_API/Action_Reference/admin_post_(action)
+* The in theme button for childing is no longer there. Figure out if I can add it back.
 * In some cases, settings_error() can be shown twice. Remove settings_error() after buffering fixed
 * Better support for grandchildren (should copy the files over)
 * Support for multiple theme directories [ may be fixed ]
