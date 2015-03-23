@@ -8,7 +8,7 @@
 settings_errors();
 ?>
 <div class="wrap">
-	<h2><?php _e('Already a child theme','one-click-child-theme') ?></h2>
+	<h2><?php printf( __('%s is already a child theme','one-click-child-theme'), $current_theme->Name ); ?></h2>
 <?php
 if ( $child_needs_repair ) :
 ?>
@@ -22,42 +22,33 @@ if ( $child_needs_repair ) :
 	</form>
 <?php
 endif;
+if ( !empty($template_files) ) :
 ?>
-	<h3><?php _e('Grandchild theme?','one-click-child-theme') ?></h3>
-	<div class="copy"><?php _e( 'WordPress has no formal support for theme grandchildren. No other actions currently supported in One Click Child Theme.', 'one-click-child-theme' ); ?></div>
-
-</div>
-<?php
-return;
-?>
-
-	<form action="<?php echo admin_url( 'themes.php?page=one-click-child-theme-page' ); ?>" method="post" id="create_child_form">
-		<input type="hidden" name="cmd" value="create_child_theme" />
+	<h3><?php _e('Child files','one-click-child-theme') ?></h3>
+	<div class="copy"><?php _e( 'If you wish to modify the behavior of a template file, select it and click the "Copy Template" button below.', 'one-click-child-theme' ); ?></div>
+	<form action="<?php echo admin_url( 'themes.php?page=one-click-child-theme-page' ); ?>" method="post" id="copy_template_file_form">
+		<input type="hidden" name="cmd" value="copy_template_file" />
 		<table class="form-table">
 			<tr>
-				<th scope="row"><label for="create_child_theme_name"><?php _e( 'Theme Name', 'one-click-child-theme' ); ?></label></th>
-				<td>
-					<input type="text" name="theme_name" value="<?php echo $theme_name; ?>" id="create_child_theme_name" />
-					<p class="description"><?php _e( 'Give your theme a name.', 'one-click-child-theme' ); ?>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row"><label for="create_child_description"><?php _e( 'Description', 'one-click-child-theme' ); ?></label></th>
-				<td>
-					<textarea name="description" value="<?php echo $description; ?>" rows="2" cols="40" id="create_child_description"></textarea>
-					<p class="description"><?php _e( 'Describe your theme.', 'one-click-child-theme' ); ?>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row"><label for="create_child_author_name"><?php _e( 'Author', 'one-click-child-theme' ); ?></label></th>
-				<td>
-					<input name="author_name" value="<?php echo $author; ?>" id="create_child_author_name" />
-					<p class="description"><?php _e( 'Your name.', 'one-click-child-theme' ); ?>
-				</td>
+				<th scope="row"><label for="copy_template_file_name"><?php _e( 'Template File', 'one-click-child-theme' ); ?></label></th>
+				<td><select name="filename" id="copy_template_file_name">
+<?php
+	foreach ($template_files as $filename) :
+?>
+					<option value="<?php esc_attr_e($filename); ?>"><?php esc_html_e($filename) ?></option>
+<?php
+	endforeach;
+?>
+				</select></td>
 			</tr>
 		</table>
 		<p class="submit">
-			<input type="submit" class="button button-primary" value="<?php _e( 'Create Child', 'one-click-child-theme' ); ?>" />
+			<input type="submit" class="button button-primary" value="<?php _e( 'Copy Template', 'one-click-child-theme' ); ?>" />
 		</p>
 	</form>
-
+<?php
+endif;
+?>
+	<h3><?php _e('Grandchild theme?','one-click-child-theme') ?></h3>
+	<div class="copy"><?php _e( 'WordPress has no formal support for theme grandchildren. No other actions currently supported in One Click Child Theme.', 'one-click-child-theme' ); ?></div>
+</div>

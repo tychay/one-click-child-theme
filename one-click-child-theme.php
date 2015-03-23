@@ -53,6 +53,13 @@ class OneClickChildTheme {
 			// Handle one-click repair form
 			if ( strcmp($_POST['cmd'],'repair_child_theme') == 0 ) {
 				$this->_handle_repair_child_theme();
+				$this->_show_child_already_form( $this->_child_theme_needs_repair() );
+				return;
+			}
+			// Handle child filing form
+			if ( strcmp($_POST['cmd'],'copy_template_file') == 0 ) {
+				$this->_handle_copy_template_file();
+				$this->_show_child_already_form( $this->_child_theme_needs_repair() );
 				return;
 			}
 		}
@@ -78,9 +85,98 @@ class OneClickChildTheme {
 	 * @param  boolean $child_needs_repair whether or not child theme needs repair
 	 */
 	private function _show_child_already_form($child_needs_repair) {
+		$current_theme = wp_get_theme();
+		$filename='test.php';
+
+		// Search for template files.
+		// Note: since there can be files like {mimetype}.php, we must assume
+		// that any root level .php files in the template directory are
+		// templates.
+		$template_files = glob ( get_template_directory().'/*.php' );
+		foreach ( $template_files as $index=>$file ) {
+			$template_files[$index] = basename( $file );
+		}
+		// Filter out any files in child already created
+		$child_theme_dir = get_stylesheet_directory();
+		foreach ( $template_files as $index=>$filename ) {
+			if ( file_exists($child_theme_dir.'/'.$filename) ) {
+				unset($template_files[$index]);
+			}
+		}
 		require $this->plugin_dir.'/templates/is_child_already.php';
 		//TODO: handle grandchildren
 	}
+
+	/**
+	 * Handle the copy_template form.
+	 */
+	private function _handle_copy_template_file() {
+		$filename = ( empty($_POST['filename']) )
+			? ''
+			: $_POST['filename'];
+		if ( !$filename ) {
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				__('No template file specified.', 'one-click-child-theme'),
+				$result->get_error_message(),
+				'error'
+			);
+			return;
+		}
+		$child_theme_dir = get_stylesheet_directory();
+		$template_dir = get_template_directory();
+				var_dump('bar');
+		if ( !file_exists($template_dir.'/'.$filename) ) {
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				sprintf( __('Template file %s does not exist in parent theme!', 'one-click-child-theme'),
+					$filename
+					),
+				$result->get_error_message(),
+				'error'
+			);
+			return;
+		}
+		if ( file_exists($child_theme_dir.'/'.$filename) ) {
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				sprintf( __('Template file %s already exists in child theme!', 'one-click-child-theme'),
+					$filename
+					),
+				$result->get_error_message(),
+				'error'
+			);
+			return;
+		}
+		if ( !copy( $template_dir.'/'.$filename, $child_theme_dir.'/'.$filename ) ) {
+			add_settings_error(
+				'',
+				'one-click-child-theme',
+				sprintf( __('Failed to duplicate file %s!', 'one-click-child-theme'),
+					$filename
+					),
+				$result->get_error_message(),
+				'error'
+			);
+		}
+		add_settings_error(
+			'',
+			'one-click-child-theme',
+			sprintf(__('<a href="%s">File %s created!</a>', 'one-click-child-theme'),
+				admin_url( sprintf( 'theme-editor.php?file=%s&theme=%s',
+					urlencode($filename),
+					urlencode(get_stylesheet())
+					)),
+				$filename
+				),
+			'updated'
+		);
+		return;
+	}
+
 	/**
 	 * Handle the create_child_theme form.
 	 */
@@ -175,6 +271,12 @@ class OneClickChildTheme {
 				'error'
 			);
 		}
+		add_settings_error(
+			'',
+			'one-click-child-theme',
+			__('Repaired child theme.', 'one-click-child-theme'),
+			'updated'
+		);
 		return;
 	}
 
@@ -294,4 +396,3 @@ class OneClickChildTheme {
 new OneClickChildTheme();
 // Start this plugin
 //add_action( 'admin_init', array('OneClickChildTheme','init'), 12 );
-?>
