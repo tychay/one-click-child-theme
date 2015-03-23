@@ -57,12 +57,21 @@ class OneClickChildTheme {
 				$error = $result->get_error_message();
 				// $error is rendered below
 			} else {
-				var_dump($result);
-				var_dump(switch_theme( $result['parent_template'], $result['new_theme'] ));
+				//var_dump($result);
+				switch_theme( $result['parent_template'], $result['new_theme'] );
+				add_settings_error(
+					'',
+					'one-click-child-theme',
+					sprintf(__('<a href="%s">Theme switched!</a>', 'one-click-child-theme'),
+						admin_url( 'themes.php' )
+					),
+					'updated'
+				);
+				//add_action( 'admin_notices', array('OneClickChildTheme','adminNoticeThemeCreated') );
 				// TODO: put a redirect in here somehow?
 				//wp_redirect( admin_url('themes.php') ); //buffer issue :-(
-				printf( __('<a href="%s">Theme switched!</a>', 'one-click-child-theme'), admin_url( 'themes.php' ) );
-				exit;
+				//printf( __('<a href="%s">Theme switched!</a>', 'one-click-child-theme'), admin_url( 'themes.php' ) );
+				//exit;
 			}
 		}
 
