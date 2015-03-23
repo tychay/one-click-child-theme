@@ -8,19 +8,31 @@
 settings_errors();
 ?>
 <div class="wrap">
-
-	<h2><?php _e('Create a Child Theme','one-click-child-theme') ?></h2>
-
-	<div class="copy"><?php printf( __( 'Fill out this form to create a child theme based on %s (your current theme).', 'one-click-child-theme' ), $parent_theme_name ); ?></div>
+	<h2><?php _e('Already a child theme','one-click-child-theme') ?></h2>
 <?php
-if ( !empty( $error ) ) :
+if ( $child_needs_repair ) :
 ?>
-	<div class="error"><?php echo $error; ?></div>
+	<h3><?php _e('Child theme needs repair', 'one-click-child-theme') ?></h3>
+	<div class="copy"><?php _e( 'Detected outdated child theme mechanism. Click the button below to attempt a one-click repair.', 'one-click-child-theme' ); ?></div>
+	<form action="<?php echo admin_url( 'themes.php?page=one-click-child-theme-page' ); ?>" method="post" id="repair_child_form">
+		<input type="hidden" name="cmd" value="repair_child_theme" />
+		<p class="submit">
+			<input type="submit" class="button button-primary" value="<?php _e( 'Repair Child Theme', 'one-click-child-theme' ); ?>" />
+		</p>
+	</form>
 <?php
 endif;
 ?>
+	<h3><?php _e('Grandchild theme?','one-click-child-theme') ?></h3>
+	<div class="copy"><?php _e( 'WordPress has no formal support for theme grandchildren. No other actions currently supported in One Click Child Theme.', 'one-click-child-theme' ); ?></div>
+
+</div>
+<?php
+return;
+?>
 
 	<form action="<?php echo admin_url( 'themes.php?page=one-click-child-theme-page' ); ?>" method="post" id="create_child_form">
+		<input type="hidden" name="cmd" value="create_child_theme" />
 		<table class="form-table">
 			<tr>
 				<th scope="row"><label for="create_child_theme_name"><?php _e( 'Theme Name', 'one-click-child-theme' ); ?></label></th>
@@ -48,5 +60,4 @@ endif;
 			<input type="submit" class="button button-primary" value="<?php _e( 'Create Child', 'one-click-child-theme' ); ?>" />
 		</p>
 	</form>
-</div>
 
