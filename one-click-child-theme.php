@@ -3,12 +3,14 @@
 
 Plugin Name:  One-Click Child Theme
 Plugin URI:   http://terrychay.com/wordpress-plugins/one-click-child-theme
-Version:      1.5
-Description:  Allows you to easily child theme any theme from the theme
-			  options on the wp-admin instead of going into shell or
-  			  using FTP.
+Version:      1.5.1
+Description:  Easily child theme any theme from wp-admin wp-admin without going into shell or using FTP.
 Author:       tychay
 Author URI:   http://terrychay.com/
+License:      GPLv2 or later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  one-click-child-theme
+//Domain Path:
 
 **************************************************************************/
 /*  Copyright 2011-2015  terry chay  (email : tychay@php.net)
@@ -25,6 +27,13 @@ Author URI:   http://terrychay.com/
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+/*
+ * Performance: One-Click Child Theme is only active in admin page
+ */
+if (!is_admin) { return; }
+/**
+ * The namespace for the One-Click-Child-Theme Plugin
  */
 class OneClickChildTheme {
 	private $plugin_dir = '';

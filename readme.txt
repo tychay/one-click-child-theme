@@ -84,29 +84,35 @@ will make the plugin attempt a repair into the new style.
 
 == ChangeLog ==
 
+**Version 1.6**
+
+* Performance: Only run code in admin page
+* Documentation: Make sure description is under 140 characters
+* Documentation: Updated license
+
 **Version 1.5**
 
-* Added ability to repair child theme
-* Added ability to copy any template file from parent theme.
-* Upgrade look of form to resemble most admin forms.
-* Properly shows a status message on success.
-* Added section for FAQ and Screenshots.
-* Some housecleaning of filesystem structure of plugin
+* Feature: Added ability to repair child theme
+* Feature: Added ability to copy any template file from parent theme.
+* Design: Upgrade look of form to resemble most admin forms.
+* Bug Fix: Properly shows a status message on success.
+* Documentation: Added section for FAQ and Screenshots.
+* Documentation: Some housecleaning of filesystem structure of plugin
 
 **Version 1.4**
 
-* Modified to account for [changed best practice from using @import to function.php](http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme)
+* Bug Fix: Modified to account for [changed best practice from using @import to function.php](http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme)
 
 **Version 1.2**
 
-* Remembers to network enable (activate) the theme after creation.
-* Added screenshot support (Thanks! Chris Robinson <http://contempographicdesign.com/>)
-* WP_Error handling
-* Refactored codebase
+* Bug Fix: Remembers to network enable (activate) the theme after creation.
+* Feature: Added screenshot support (Thanks! Chris Robinson <http://contempographicdesign.com/>)
+* Bug Fix: WP_Error handling
+* Documentation: Refactored codebase
 
 **Version 1.1**
 
-* Added RTL support
+* Feature: Added RTL support
 
 **Version 1.0.1**
 
