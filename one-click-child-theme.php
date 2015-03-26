@@ -41,18 +41,27 @@ class OneClickChildTheme {
 		$this->plugin_dir = dirname(__FILE__);
 		// it has to be buried like this or you get an error:
 		//  "You do not have sufficient permissions to access this page"
-		add_filter( 'admin_menu', array( $this, 'createMenu' ) );
+		add_filter( 'admin_menu', array( $this, 'createAdminMenu' ) );
 	}
-	function createMenu() {
-		add_theme_page( 'Make a Child Theme', 'Child Theme', 'install_themes', 'one-click-child-theme-page', array( $this, 'showThemePage' ) );
+	/**
+	 * Adds an admin menu for One Click Child Theme in Appearances
+	 */
+	function createAdminMenu() {
+		add_theme_page(
+			__('Make a Child Theme', 'one-click-child-theme'),
+			__('Child Theme', 'one-click-child-theme'),
+			'install_themes',
+			'one-click-child-theme-menu',
+			array( $this, 'showThemePage' ) );
 	}
 
 	/**
 	 * Show the theme page which has a form allowing you to child theme
 	 * currently selected theme.
+	 * @todo  move the post handling into the admin_action_* hook in admin.php
 	 */
-	function showThemePage() {
-
+	function showThemePage()
+	{
 		if ( !empty($_POST['cmd'])) {
 			// Handle Make Child Theme form
 			if ( strcmp($_POST['cmd'],'create_child_theme') == 0 ) {

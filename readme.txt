@@ -87,8 +87,10 @@ will make the plugin attempt a repair into the new style.
 **Version 1.6**
 
 * Performance: Only run code in admin page
+* Bug: Added in some missing gettext 
 * Documentation: Make sure description is under 140 characters
 * Documentation: Updated license
+* Documentation: Other minor tweaks
 
 **Version 1.5**
 
