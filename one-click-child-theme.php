@@ -1,4 +1,5 @@
-<?php /*
+<?php
+/*
 **************************************************************************
 
 Plugin Name:  One-Click Child Theme
@@ -41,7 +42,7 @@ class OneClickChildTheme {
 		$this->plugin_dir = dirname(__FILE__);
 		// it has to be buried like this or you get an error:
 		//  "You do not have sufficient permissions to access this page"
-		add_filter( 'admin_menu', array( $this, 'createAdminMenu' ) );
+		add_action( 'admin_menu', array( $this, 'createAdminMenu' ) );
 	}
 	/**
 	 * Adds an admin menu for One Click Child Theme in Appearances
