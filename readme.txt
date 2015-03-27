@@ -1,9 +1,9 @@
 === One-Click Child Theme ===
 Contributors: tychay
 Donate link: http://www.kiva.org/lender/tychay
-Tags: theme, child theme, shared hosting, css, custom themeing
+Tags: theme, child theme, child theme creator, child theme creator, CSS, stylesheet, custom theme, customize theme, shared hosting
 Requires at least: 3.0
-Tested up to: 4.1
+Tested up to: 4.1.1
 Stable tag: trunk
 
 Adds a Theme option to any active theme allowing you to make a child theme.
@@ -16,16 +16,17 @@ Useful for shared hosts, this allows you to easily create child themes from any
 theme just by clicking.
 
 Ever since WordPress 3.0, you shouldn’t directly modify CSS of any downloaded
-themes because if you update the theme, your changes will be destroyed. Instead,
-it is recommended that you create a child theme and edit the CSS there, this way
-updates to the parent theme will be inherited instead of destroy your changes.
-The problem is that currently the only way to child theme something is edit
-files on the filesystem. This is non-intuitive for shared-hosting sites with
-one-click WordPress installs (it usually involves a “shell account” or learning
-how to use FTP).
+themes because if you update the theme, your changes will be destroyed. Instead, it is recommended that you create a child theme and edit the CSS
+there so that updates to the parent theme will be inherited instead of destroy
+your changes.
 
-This attempts to get around that issue, by adding a button to the themes page to
-allow you to child theme the page. (It’s not really one-click, though.)
+The problem many run into is currently the only way to child theme something
+is edit files on the filesystem. This is non-intuitive for shared-hosting
+sites with one-click WordPress installs (it usually involves a “shell account”
+or learning how to use FTP).
+
+This attempts to get around that issue, by adding a button to the themes page
+to allow you to child theme the page. (It’s not really one-click, though.)
 
 Inspired by @janeforshort‘s and @designsimply's WordCamp SF 2011 talk on CSS
 theming as requested by @sfgirl for [her blog](http://pintsizedmusings.com/).
@@ -58,12 +59,27 @@ that will allow you to create a child theme based on the current active theme.
 
 You can wait for the theme to get updated and have it break it, of you can:
 
-1. Go through the steps for installing and running the plugin above.
+1. Go through the steps for installing and running the plugin above to create a child theme
 2. Click on the [Appearance &gt; Editor](http://codex.wordpress.org/Appearance_Editor_SubPanel) in your admin dashboard menu (or network admin menu if multi-site).
 3. Select the parent theme in the drop down on the right, click `Select` and make sure you are editing the file `style.css` (select on the right).
 4. Copy the changes you made, if you managed to remember them.
 5. Select the child theme you created to the drop down in the left (you should be editing `style.css`).
 6. Paste your changes to the end of the file.
+
+= I can't find this Theme Option button you are alluding to in the documentation? =
+
+I really need to update the screenshot. It's still there, but the location has
+changed as WordPress has been upgraded.
+
+1. Go to the `Appearance` tab
+2. Click on the Active theme (it should say "Theme Details" when you mouseover)
+3. An overlay appears. The Theme option button "Child Theme" is there
+
+= When I go to the Child Theme menu, it says "X is already a child theme" and I can't create a child theme. =
+
+Making grandchildren of themes is non-trivial, so I disabled the form if it is
+already a child theme. Instead I offer the ability to repair the Child theme or
+copy template files from the parent into the child for editing.
 
 = What does the "Repair Child Theme" button do? =
 
@@ -71,16 +87,22 @@ WordPress changed the [recommended way of handling parent references in child th
 the child theme was done in the old style, it shows this button. Clicking on it
 will make the plugin attempt a repair into the new style.
 
-== TODO List ==
+= Why should I use your plugin and not [<insert competitor here> ](https://wordpress.org/plugins/search.php?q=child+theme)
 
-* There is a buffering issue with form handling occurring so late, fix that. See https://codex.wordpress.org/Plugin_API/Action_Reference/admin_post_(action)
-* The in theme button for childing is no longer there. Figure out if I can add it back.
-* In some cases, settings_error() can be shown twice. Remove settings_error() after buffering fixed
-* Better support for grandchildren (should copy the files over)
-* Support for multiple theme directories [ may be fixed ]
-* Error support is spotty at best
-* Add a redirect to the theme page on completion (buffering issue needs fixed first)
-* Use Theme_Upgrader/WP_Upgrader to figure out what files user may have trashed and ported them
+What? People have forked my idea because I left Automattic (WordPress) for
+Wikimedia (Wikipedia) three years ago? This means war! Other plugins, you're
+going down! Face the pent-up aggression of a pointy-haired boss being kept away
+from development for years!
+
+As to why this plugin is the best. Using anything else is like drinking
+[New Coke](http://en.wikipedia.org/wiki/New_Coke) to OCCT's Coke Classic.
+Experience the original plugin taste your parents knew and loved! Plus, I have
+four-year old screenshots on my theme page, a way cooler plugin icon, and a
+baby picture of me and my brother on the banner. Also, this plugin is free
+(no "pro" version and not even a PayPal link), strikes the right balance of
+features, and (now that I've figured out how to admin the plugin page), I've
+been adding volunteers to support it even if I sucked into the vortex of
+middle management.
 
 == ChangeLog ==
 
@@ -89,8 +111,9 @@ will make the plugin attempt a repair into the new style.
 * Performance: Only run code in admin page
 * Bug: Added in some missing gettext 
 * Documentation: Make sure description is under 140 characters
-* Documentation: Updated license
-* Documentation: Other minor tweaks
+* Documentation: Screenshots now display
+* Documentation: Added banner image and plugin icon
+* Documentation: Other minor tweaks including updated FAQ and license
 
 **Version 1.5**
 

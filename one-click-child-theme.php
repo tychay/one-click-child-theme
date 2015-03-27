@@ -32,7 +32,7 @@ Text Domain:  one-click-child-theme
 /*
  * Performance: One-Click Child Theme is only active in admin page
  */
-if (!is_admin) { return; }
+if (!is_admin()) { return; }
 /**
  * The namespace for the One-Click-Child-Theme Plugin
  */
@@ -52,7 +52,7 @@ class OneClickChildTheme {
 			__('Make a Child Theme', 'one-click-child-theme'),
 			__('Child Theme', 'one-click-child-theme'),
 			'install_themes',
-			'one-click-child-theme-menu',
+			'one-click-child-theme-page',
 			array( $this, 'showThemePage' ) );
 	}
 
