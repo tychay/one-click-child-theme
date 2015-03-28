@@ -108,12 +108,22 @@ theme's birth. Think of it as a parenting guide for your new child theme.
 
 * Repair a child theme created in the old style.
 * Copy templates over from your parent theme into your child theme.
+* Replace the child theme screenshot with one of your site
+
+When you have an active child theme, click on `Appearance > Child Theme` to
+get to these functions.
 
 = What does the "Repair Child Theme" button do? =
 
-WordPress changed the [recommended way of handling parent references in child themes][http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme]. Ie this plugin detects your child theme was done in the old style, it shows
+WordPress changed the [recommended way of handling parent references in child themes][http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme].
+If this plugin detects your child theme was done in the old style, it shows
 this button. Clicking on it will make the plugin attempt a repair into the
 new style.
+
+= How come the screenshot service just shows a big 404 =
+
+The most likely scenario is your WordPress `site_url` isn't publicly
+accessible from the web.
 
 = What's with the debugging/error code on child theme creation? =
 
@@ -148,8 +158,12 @@ itself, this is a volunteer endeavor.
 
 **Version 1.6**
 
+* Feature: Added ability to generate theme screenshots
+* Feature: Redirect to theme page on child theme creation
+* Feature: Successful child theme creation suggests you edit its `style.css` file
 * Performance: Only run code in admin page
-* Bug: Added in some missing gettext 
+* Bug: Added in some missing gettext
+* Bug: Removed the double errors/updates being displays
 * Documentation: Make sure description is under 140 characters
 * Documentation: Screenshots now display
 * Documentation: Added banner image and plugin icon

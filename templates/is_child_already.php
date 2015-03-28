@@ -20,6 +20,7 @@ if ( $child_needs_repair ) :
 			<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Repair Child Theme', self::_SLUG ); ?>" />
 		</p>
 	</form>
+
 <?php
 endif;
 if ( !empty($template_files) ) :
@@ -50,6 +51,36 @@ if ( !empty($template_files) ) :
 <?php
 endif;
 ?>
+
+	<h3><?php esc_html_e('Screenshot',self::_SLUG) ?></h3>
+	<div class="copy"><?php esc_html_e( 'By default One-Click Child theme uses the parent theme’s screenshot. You can use WordPress.com’s mshot service to replace the current child theme’s screenshot with a screenshot of your current web site’s homepage (if publicly accessible over the web).', self::_SLUG ); ?></div>
+	<form action="admin-post.php" method="post" id="mshot_homepage_form">
+		<input type="hidden" name="action" value="<?php echo $this->_mshotSiteFormId; ?>" />
+		<?php wp_nonce_field($this->_mshotSiteFormId.'-verify'); ?>
+		<div class="theme-browser">
+		<div class="theme">
+			<div class="theme-screenshot">
+<?php if ($child_theme_screenshot_url) : ?>
+				<img src="<?php echo $child_theme_screenshot_url ?>" />
+<?php else : ?>
+				<p><?php esc_html_e('No screenshot', self::_SLUG); ?></p>
+<?php endif; ?>
+			</div>
+			<div class="theme-name"><?php esc_html_e('Current', self::_SLUG); ?></div>
+		</div>
+		<div class="theme">
+			<div class="theme-screenshot">
+				<img src="<?php echo $mshot_url ?>" />
+			</div>
+			<div class="theme-name"><?php esc_html_e('mShot', self::_SLUG); ?></div>
+		</div>
+		</div>
+		<br clear="all" />
+		<p class="submit">
+			<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Replace Screenshot', self::_SLUG ); ?>" />
+		</p>
+	</form>
+
 	<h3><?php esc_html_e('Grandchild theme?',self::_SLUG) ?></h3>
 	<div class="copy"><?php esc_html_e( 'WordPress has no formal support for theme grandchildren. No other actions currently supported in One Click Child Theme.', self::_SLUG ); ?></div>
 </div>
