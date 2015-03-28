@@ -36,8 +36,8 @@ theming as requested by @sfgirl for [her blog](http://pintsizedmusings.com/).
 ###Installing The Plugin###
 
 Extract all files from the ZIP file, making sure to keep the file structure
-intact, and then upload it to `/wp-content/plugins/`. Then just visit your admin
-area and activate the plugin. That's it!
+intact, and then upload it to `/wp-content/plugins/`. Then just visit your
+admin area and activate the plugin. That's it!
 
 **See Also:** ["Installing Plugins" article on the WP Codex](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins)
 
@@ -66,6 +66,21 @@ You can wait for the theme to get updated and have it break it, of you can:
 5. Select the child theme you created to the drop down in the left (you should be editing `style.css`).
 6. Paste your changes to the end of the file.
 
+= Your plugin broken my site! =
+
+I didn't think that's possible, but if so, I want to fix it!
+
+First, check what really happened. Is your admin console broken, is the
+theme broken (go to a new window and check your blog). If a theme fails to
+work and for some reason I didn't catch that error, WordPress should restore
+the previous theme (or whatever the default theme is) so your actual blog
+should be okay and recoverable. If for some reason it didn't default to the
+right theme, go into the Appearance menu and re-enable the parent theme.
+
+Then go to the [support page](https://wordpress.org/support/plugin/one-click-child-theme),
+describe what happened (screenshots help too) and anything else and we'll try
+our best to help you.
+
 = I can't find this Theme Option button you are alluding to in the documentation? =
 
 I really need to update the screenshot. It's still there, but the location has
@@ -81,20 +96,42 @@ Making grandchildren of themes is non-trivial, so I disabled the form if it is
 already a child theme. Instead I offer the ability to repair the Child theme or
 copy template files from the parent into the child for editing.
 
+= Can the plugin be deleted after I create a Child Theme with it? =
+
+Yes. The purpose of the plugin is fulfilled. Congratulations! Personally, I'd
+disable it, instead of delete it.
+
+Having said that, there are some things that it'll help with after your child
+theme's birth. Think of it as a parenting guide for your new child theme.
+
+= Features like? =
+
+* Repair a child theme created in the old style.
+* Copy templates over from your parent theme into your child theme.
+
 = What does the "Repair Child Theme" button do? =
 
-WordPress changed the [recommended way of handling parent references in child themes][http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme]. if this plugin detected 
-the child theme was done in the old style, it shows this button. Clicking on it
-will make the plugin attempt a repair into the new style.
+WordPress changed the [recommended way of handling parent references in child themes][http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme]. Ie this plugin detects your child theme was done in the old style, it shows
+this button. Clicking on it will make the plugin attempt a repair into the
+new style.
+
+= What's with the debugging/error code on child theme creation? =
+
+You have an old version of this plugin, please update to the latest one.
+
+I wrote this plugin back **during** a talk at WordCamp SF 2011 about CSS
+Themeing in order to help the person sitting next to me. I just didn't get to
+some things… for years. Sorry about that! The debugging code didn't do affect any behavior, it was a sign of me being lazy and not realizing that the plugin
+would have tens of thousands of avid users! :-(
 
 = Why should I use your plugin and not [<insert competitor here> ](https://wordpress.org/plugins/search.php?q=child+theme)
 
 What? People have forked my idea because I left Automattic (WordPress) for
 Wikimedia (Wikipedia) three years ago? This means war! Other plugins, you're
-going down! Face the pent-up aggression of a pointy-haired boss being kept away
-from development for years!
+going down! Steel yourself for the pent-up aggression of a pointy-haired boss
+being kept away from the programming console for years.
 
-As to why this plugin is the best. Using anything else is like drinking
+As to why this plugin is the best, using anything else is like drinking
 [New Coke](http://en.wikipedia.org/wiki/New_Coke) to OCCT's Coke Classic.
 Experience the original plugin taste your parents knew and loved! Plus, I have
 four-year old screenshots on my theme page, a way cooler plugin icon, and a
@@ -102,7 +139,10 @@ baby picture of me and my brother on the banner. Also, this plugin is free
 (no "pro" version and not even a PayPal link), strikes the right balance of
 features, and (now that I've figured out how to admin the plugin page), I've
 been adding volunteers to support it even if I sucked into the vortex of
-middle management.
+middle management again — isn't going to happen, that s--t is **EVIL**!
+
+Which reminds me, if you want to help out, we're cool with that. Like WordPress
+itself, this is a volunteer endeavor.
 
 == ChangeLog ==
 

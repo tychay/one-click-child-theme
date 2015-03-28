@@ -5,32 +5,33 @@
  * @author terry chay <tychay@php.net>
  */
 
-settings_errors();
 ?>
 <div class="wrap">
-	<h2><?php printf( __('%s is already a child theme','one-click-child-theme'), $current_theme->Name ); ?></h2>
+	<h2><?php esc_html_e( sprintf( __('%s is already a child theme', self::_SLUG), $current_theme->Name ) ); ?></h2>
 <?php
 if ( $child_needs_repair ) :
 ?>
-	<h3><?php _e('Child theme needs repair', 'one-click-child-theme') ?></h3>
-	<div class="copy"><?php _e( 'Detected outdated child theme mechanism. Click the button below to attempt a one-click repair.', 'one-click-child-theme' ); ?></div>
-	<form action="<?php echo admin_url( 'themes.php?page=one-click-child-theme-page' ); ?>" method="post" id="repair_child_form">
-		<input type="hidden" name="cmd" value="repair_child_theme" />
+	<h3><?php esc_html_e('Child theme needs repair', self::_SLUG) ?></h3>
+	<div class="copy"><?php esc_html_e( 'Detected outdated child theme mechanism. Click the button below to attempt a one-click repair.', self::_SLUG ); ?></div>
+	<form action="admin-post.php" method="post" id="repair_child_form">
+		<input type="hidden" name="action" value="<?php echo $this->_repairChildFormId; ?>" />
+		<?php wp_nonce_field($this->_repairChildFormId.'-verify'); ?>
 		<p class="submit">
-			<input type="submit" class="button button-primary" value="<?php _e( 'Repair Child Theme', 'one-click-child-theme' ); ?>" />
+			<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Repair Child Theme', self::_SLUG ); ?>" />
 		</p>
 	</form>
 <?php
 endif;
 if ( !empty($template_files) ) :
 ?>
-	<h3><?php _e('Child files','one-click-child-theme') ?></h3>
-	<div class="copy"><?php _e( 'If you wish to modify the behavior of a template file, select it and click the "Copy Template" button below.', 'one-click-child-theme' ); ?></div>
-	<form action="<?php echo admin_url( 'themes.php?page=one-click-child-theme-page' ); ?>" method="post" id="copy_template_file_form">
-		<input type="hidden" name="cmd" value="copy_template_file" />
+	<h3><?php esc_html_e('Child files',self::_SLUG) ?></h3>
+	<div class="copy"><?php esc_html_e( 'If you wish to modify the behavior of a template file, select it and click the "Copy Template" button below.', self::_SLUG ); ?></div>
+	<form action="admin-post.php" method="post" id="copy_template_file_form">
+		<input type="hidden" name="action" value="<?php echo $this->_copyTemplateFormId; ?>" />
+		<?php wp_nonce_field($this->_copyTemplateFormId.'-verify'); ?>
 		<table class="form-table">
 			<tr>
-				<th scope="row"><label for="copy_template_file_name"><?php _e( 'Template File', 'one-click-child-theme' ); ?></label></th>
+				<th scope="row"><label for="copy_template_file_name"><?php esc_html_e( 'Template File', self::_SLUG ); ?></label></th>
 				<td><select name="filename" id="copy_template_file_name">
 <?php
 	foreach ($template_files as $filename) :
@@ -43,12 +44,12 @@ if ( !empty($template_files) ) :
 			</tr>
 		</table>
 		<p class="submit">
-			<input type="submit" class="button button-primary" value="<?php _e( 'Copy Template', 'one-click-child-theme' ); ?>" />
+			<input type="submit" class="button button-primary" value="<?php esc_attr_e( 'Copy Template', self::_SLUG ); ?>" />
 		</p>
 	</form>
 <?php
 endif;
 ?>
-	<h3><?php _e('Grandchild theme?','one-click-child-theme') ?></h3>
-	<div class="copy"><?php _e( 'WordPress has no formal support for theme grandchildren. No other actions currently supported in One Click Child Theme.', 'one-click-child-theme' ); ?></div>
+	<h3><?php esc_html_e('Grandchild theme?',self::_SLUG) ?></h3>
+	<div class="copy"><?php esc_html_e( 'WordPress has no formal support for theme grandchildren. No other actions currently supported in One Click Child Theme.', self::_SLUG ); ?></div>
 </div>
