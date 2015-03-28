@@ -59,13 +59,14 @@ endif;
 		<?php wp_nonce_field($this->_mshotSiteFormId.'-verify'); ?>
 		<div class="theme-browser">
 		<div class="theme">
-			<div class="theme-screenshot">
 <?php if ($child_theme_screenshot_url) : ?>
+			<div class="theme-screenshot">
 				<img src="<?php echo $child_theme_screenshot_url ?>" />
-<?php else : ?>
 				<p><?php esc_html_e('No screenshot', self::_SLUG); ?></p>
-<?php endif; ?>
 			</div>
+<?php else : ?>
+			<div class="theme-screenshot blank"></div>
+<?php endif; ?>
 			<div class="theme-name"><?php esc_html_e('Current', self::_SLUG); ?></div>
 		</div>
 		<div class="theme">

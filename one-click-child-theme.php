@@ -4,7 +4,7 @@
 
 Plugin Name:  One-Click Child Theme
 Plugin URI:   http://terrychay.com/wordpress-plugins/one-click-child-theme
-Version:      1.5.1
+Version:      1.6
 Description:  Easily child theme any theme from wp-admin wp-admin without going into shell or using FTP.
 Author:       tychay
 Author URI:   http://terrychay.com/
