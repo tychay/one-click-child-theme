@@ -57,7 +57,7 @@ that will allow you to create a child theme based on the current active theme.
 
 = I already modified my CSS in the existing theme? How do I use One Click Child Theme to fix this? =
 
-You can wait for the theme to get updated and have it break it, of you can:
+You can wait for the theme to get updated and have it break it, or you can:
 
 1. Go through the steps for installing and running the plugin above to create a child theme
 2. Click on the [Appearance &gt; Editor](http://codex.wordpress.org/Appearance_Editor_SubPanel) in your admin dashboard menu (or network admin menu if multi-site).
@@ -66,7 +66,7 @@ You can wait for the theme to get updated and have it break it, of you can:
 5. Select the child theme you created to the drop down in the left (you should be editing `style.css`).
 6. Paste your changes to the end of the file.
 
-= Your plugin broken my site! =
+= Your plugin broke my site! =
 
 I didn't think that's possible, but if so, I want to fix it!
 
@@ -98,11 +98,11 @@ copy template files from the parent into the child for editing.
 
 = Can the plugin be deleted after I create a Child Theme with it? =
 
-Yes. The purpose of the plugin is fulfilled. Congratulations! Personally, I'd
-disable it, instead of delete it.
+Yes. The main purpose of the plugin is fulfilled. Congratulations!
+(Personally, I'd disable it, instead of delete it.)
 
-Having said that, there are some things that it'll help with after your child
-theme's birth. Think of it as a parenting guide for your new child theme.
+Having said that, there are some things that this plugin help with after your
+child theme's birth. Think of it as a parenting guide for your new child theme.
 
 = Features like? =
 
@@ -115,7 +115,7 @@ get to these functions.
 
 = What does the "Repair Child Theme" button do? =
 
-WordPress changed the [recommended way of handling parent references in child themes][http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme].
+WordPress changed the [recommended way of handling parent references in child themes](http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme).
 If this plugin detects your child theme was done in the old style, it shows
 this button. Clicking on it will make the plugin attempt a repair into the
 new style.
@@ -131,30 +131,52 @@ You have an old version of this plugin, please update to the latest one.
 
 I wrote this plugin back **during** a talk at WordCamp SF 2011 about CSS
 Themeing in order to help the person sitting next to me. I just didn't get to
-some things… for years. Sorry about that! The debugging code didn't do affect any behavior, it was a sign of me being lazy and not realizing that the plugin
-would have tens of thousands of avid users! :-(
+some things… for years. Sorry about that! The debugging code didn't affect any
+behavior — it was a sign of me being lazy and not realizing that the plugin
+would have tens of thousands of avid users!
 
-= Why should I use your plugin and not [<insert competitor here> ](https://wordpress.org/plugins/search.php?q=child+theme)
+= The theme screenshot service doesn't seem to be working. =
 
-What? People have forked my idea because I left Automattic (WordPress) for
-Wikimedia (Wikipedia) three years ago? This means war! Other plugins, you're
-going down! Steel yourself for the pent-up aggression of a pointy-haired boss
-being kept away from the programming console for years.
+First of all, is the blog accessible from the public Internet? If not, then
+that is the problem.
 
-As to why this plugin is the best, using anything else is like drinking
-[New Coke](http://en.wikipedia.org/wiki/New_Coke) to OCCT's Coke Classic.
-Experience the original plugin taste your parents knew and loved! Plus, I have
+But sometimes, even then, mshots seems a bit on the slow side. The plugin
+uses WordPress.com’s mShots service. You know, I worked at Automattic for years
+on WordPress.com and I still haven't quite figured out mShots. Eventually
+I've gotten the animated loading GIF to be replaced by a real retina-ready JPEG
+screenshot of my blog homepage. Trust me, when it works, it works great! But
+the experience may be a little like trying to get a vending machine to accept
+a crumpled dollar bill — Americans know what I mean. Suffice it to say that
+you might have to hit reload a couple times, or just fiddle around a bit.
+
+= Why should I use your plugin and not [_insert competitor here_](https://wordpress.org/plugins/search.php?q=child+theme) =
+
+What? People have forked my idea because I left [Automattic](http://automattic.com)
+for [Wikimedia](http://wikimediafoundation.org/wiki/Home) three years ago?
+This means war! Other plugins, you're going down! Steel yourself for the
+pent-up aggression of a pointy-haired boss being kept away from a
+programming console for years.
+
+As to why this plugin is the best? OCCT is Coke Classic to every other plugin's
+[New Coke](http://en.wikipedia.org/wiki/New_Coke). Experience the original
+plugin taste your parents knew and loved! Plus, I have
 four-year old screenshots on my theme page, a way cooler plugin icon, and a
-baby picture of me and my brother on the banner. Also, this plugin is free
-(no "pro" version and not even a PayPal link), strikes the right balance of
-features, and (now that I've figured out how to admin the plugin page), I've
-been adding volunteers to support it even if I sucked into the vortex of
-middle management again — isn't going to happen, that s--t is **EVIL**!
+baby picture of me and my brother on the banner. Also, this plugin strikes
+the right balance of features, is free (no "pro" version and not even a PayPal
+link), and (now that I've figured out how to admin the plugin page), I've
+been adding volunteers to support it. Even if I sucked into the vortex of
+middle management again (isn't going to happen, that s--t is **EVIL**) this
+plugin will live forever in the hearts and minds of bloggers everywhere!
 
 Which reminds me, if you want to help out, we're cool with that. Like WordPress
-itself, this is a volunteer endeavor.
+itself, this is a volunteer endeavor. Contact us in the support pages and we'll
+hook you up!
 
 == ChangeLog ==
+
+**Version 1.7**
+
+* Documentation: FAQ fixes
 
 **Version 1.6**
 
@@ -200,5 +222,4 @@ itself, this is a volunteer endeavor.
 **Version 1.0**
 
 * Initial release
-* 456789001234567890012345678900123456789001234567890012345678900123456789001234567890
 
