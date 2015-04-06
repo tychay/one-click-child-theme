@@ -1,14 +1,14 @@
-=== One-Click Child Theme ===
-Contributors: tychay
-Donate link: http://www.kiva.org/lender/tychay
-Tags: theme, child theme, child theme creator, child theme creator, CSS, stylesheet, custom theme, customize theme, shared hosting
-Requires at least: 3.0
-Tested up to: 4.1.1
-Stable tag: trunk
+# One-Click Child Theme #
+**Contributors:** tychay
+**Donate link:** http://www.kiva.org/lender/tychay
+**Tags:** theme, child theme, child theme creator, child theme creator, CSS, stylesheet, custom theme, customize theme, shared hosting
+**Requires at least:** 3.0
+**Tested up to:** 4.1.1
+**Stable tag:** trunk
 
 Adds a Theme option to any active theme allowing you to make a child theme.
 
-== Description ==
+## Description ##
 
 Please visit the [plugin homepage](http://terrychay.com/wordpress-plugins/one-click-child-theme).
 
@@ -31,7 +31,7 @@ to allow you to child theme the page. (It’s not really one-click, though.)
 Inspired by @janeforshort's and @designsimply's WordCamp SF 2011 talk on CSS
 theming as requested by @sfgirl for [her blog](http://pintsizedmusings.com/).
 
-== Installation ==
+## Installation ##
 
 ###Installing The Plugin###
 
@@ -47,15 +47,18 @@ If you have the capability to install themes in your admin, then the themes menu
 will have a new submenu called "Child Theme". Clicking on this gives you a form
 that will allow you to create a child theme based on the current active theme.
 
-== Screenshots ==
+## Screenshots ##
 
-1. To use the plugin, click one of these two palces in the Appearance section of your `wp_admin` 
-2. Fill out this form
-3. You will see the theme will be successfully child-themed, but will track the parent theme correctly.
+![](screenshot-1.png)
+To use the plugin, click one of these two palces in the Appearance section of your `wp_admin` 
+![](screenshot-2.png)
+Fill out this form
+![](screenshot-3.png)
+You will see the theme will be successfully child-themed, but will track the parent theme correctly.
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= I already modified my CSS in the existing theme? How do I use One Click Child Theme to fix this? =
+### I already modified my CSS in the existing theme? How do I use One Click Child Theme to fix this? ###
 
 You can wait for the theme to get updated and have it break it, or you can:
 
@@ -66,7 +69,7 @@ You can wait for the theme to get updated and have it break it, or you can:
 5. Select the child theme you created to the drop down in the left (you should be editing `style.css`).
 6. Paste your changes to the end of the file.
 
-= Your plugin broke my site! =
+### Your plugin broke my site! ###
 
 I didn't think that's possible, but if so, I want to fix it!
 
@@ -81,7 +84,7 @@ Then go to the [support page](https://wordpress.org/support/plugin/one-click-chi
 describe what happened (screenshots help too) and anything else and we'll try
 our best to help you.
 
-= I can't find this Theme Option button you are alluding to in the documentation? =
+### I can't find this Theme Option button you are alluding to in the documentation? ###
 
 I really need to update the screenshot. It's still there, but the location has
 changed as WordPress has been upgraded.
@@ -90,13 +93,13 @@ changed as WordPress has been upgraded.
 2. Click on the Active theme (it should say "Theme Details" when you mouseover)
 3. An overlay appears. The Theme option button "Child Theme" is there
 
-= When I go to the Child Theme menu, it says "X is already a child theme" and I can't create a child theme. =
+### When I go to the Child Theme menu, it says "X is already a child theme" and I can't create a child theme. ###
 
 Making grandchildren of themes is non-trivial, so I disabled the form if it is
 already a child theme. Instead I offer the ability to repair the Child theme or
 copy template files from the parent into the child for editing.
 
-= Can the plugin be deleted after I create a Child Theme with it? =
+### Can the plugin be deleted after I create a Child Theme with it? ###
 
 Yes. The main purpose of the plugin is fulfilled. Congratulations!
 (Personally, I'd disable it, instead of delete it.)
@@ -104,7 +107,7 @@ Yes. The main purpose of the plugin is fulfilled. Congratulations!
 Having said that, there are some things that this plugin help with after your
 child theme's birth. Think of it as a parenting guide for your new child theme.
 
-= Features like? =
+### Features like? ###
 
 * Repair a child theme created in the old style.
 * Copy templates over from your parent theme into your child theme.
@@ -113,19 +116,19 @@ child theme's birth. Think of it as a parenting guide for your new child theme.
 When you have an active child theme, click on `Appearance > Child Theme` to
 get to these functions.
 
-= What does the "Repair Child Theme" button do? =
+### What does the "Repair Child Theme" button do? ###
 
 WordPress changed the [recommended way of handling parent references in child themes](http://codex.wordpress.org/Child_Themes#How_to_Create_a_Child_Theme).
 If this plugin detects your child theme was done in the old style, it shows
 this button. Clicking on it will make the plugin attempt a repair into the
 new style.
 
-= How come the screenshot service just shows a big 404 =
+### How come the screenshot service just shows a big 404 ###
 
 The most likely scenario is your WordPress `site_url` isn't publicly
 accessible from the web.
 
-= What's with the debugging/error code on child theme creation? =
+### What's with the debugging/error code on child theme creation? ###
 
 You have an old version of this plugin, please update to the latest one.
 
@@ -135,7 +138,7 @@ some things… for years. Sorry about that! The debugging code didn't affect any
 behavior — it was a sign of me being lazy and not realizing that the plugin
 would have tens of thousands of avid users!
 
-= The theme screenshot service doesn't seem to be working. =
+### The theme screenshot service doesn't seem to be working. ###
 
 First of all, is the blog accessible from the public Internet? If not, then
 that is the problem.
@@ -149,7 +152,7 @@ the experience may be a little like trying to get a vending machine to accept
 a crumpled dollar bill — Americans know what I mean. Suffice it to say that
 you might have to hit reload a couple times, or just fiddle around a bit.
 
-= Why should I use your plugin and not [_insert competitor here_](https://wordpress.org/plugins/search.php?q=child+theme) =
+### Why should I use your plugin and not [_insert competitor here_](https://wordpress.org/plugins/search.php?q###child+theme) =
 
 What? People have forked my idea because I left [Automattic](http://automattic.com)
 for [Wikimedia](http://wikimediafoundation.org/wiki/Home) three years ago?
@@ -172,7 +175,7 @@ Which reminds me, if you want to help out, we're cool with that. Like WordPress
 itself, this is a volunteer endeavor. Contact us in the support pages and we'll
 hook you up!
 
-== ChangeLog ==
+## ChangeLog ##
 
 **Version 1.7**
 
