@@ -11,7 +11,7 @@ Author URI:   http://terrychay.com/
 License:      GPLv2 or later
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  one-click-child-theme
-//Domain Path:
+Domain Path: /languages
 
 **************************************************************************/
 /*  Copyright 2011-2015  terry chay  (email : tychay@php.net)
@@ -33,6 +33,13 @@ Text Domain:  one-click-child-theme
  * Performance: One-Click Child Theme is only active in admin page
  */
 if (!is_admin()) { return; }
+/**
+* Load textdomain
+ */
+function _load_textdomain() {
+	load_plugin_textdomain( 'one-click-child-theme', false, basename(dirname(__FILE__)) . '/languages' );
+}
+add_action( 'init', '_load_textdomain' );
 /**
  * The namespace for the One-Click Child Theme Plugin
  */
