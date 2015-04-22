@@ -53,7 +53,7 @@ endif;
 ?>
 
 	<h3><?php esc_html_e('Screenshot',self::_SLUG) ?></h3>
-	<div class="copy"><?php esc_html_e( 'By default One-Click Child theme uses the parent theme’s screenshot. You can use WordPress.com’s mshot service to replace the current child theme’s screenshot with a screenshot of your current web site’s homepage (if publicly accessible over the web).', self::_SLUG ); ?></div>
+	<div class="copy"><?php esc_html_e( 'By default One-Click Child Theme uses the parent theme’s screenshot. You can use WordPress.com’s mshot service to replace the current child theme’s screenshot with a screenshot of your current web site’s homepage (if publicly accessible over the web).', self::_SLUG ); ?></div>
 	<form action="admin-post.php" method="post" id="mshot_homepage_form">
 		<input type="hidden" name="action" value="<?php echo $this->_mshotSiteFormId; ?>" />
 		<?php wp_nonce_field($this->_mshotSiteFormId.'-verify'); ?>
