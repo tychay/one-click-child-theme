@@ -1,0 +1,226 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: One-Click Child Theme\n"
+"POT-Creation-Date: 2015-04-15 12:04-0000\n"
+"PO-Revision-Date: 2015-04-15 14:43-0000\n"
+"Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
+"Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: one-click-child-theme.php:119
+#, php-format
+msgid ""
+"Theme switched! <a href=\"%s\">Click here to edit the child stylesheet</a>."
+msgstr ""
+"Tema alterado! <a href=\"%s\">Clique aqui para editar a folha de estilos "
+"dependente</a>."
+
+#: one-click-child-theme.php:132
+#, php-format
+msgid "Failed to create file: %s"
+msgstr "Falhou ao criar o ficheiro: %s"
+
+#: one-click-child-theme.php:139
+#, php-format
+msgid "Failed to edit file: %s"
+msgstr "Falhou ao editar o ficheiro: %s"
+
+#: one-click-child-theme.php:145
+msgid "Repaired child theme."
+msgstr "O tema dependente foi reparado."
+
+#: one-click-child-theme.php:149
+msgid "No template file specified."
+msgstr "Nenhum ficheiro modelo especificado."
+
+#: one-click-child-theme.php:153
+#, php-format
+msgid "Template file %s does not exist in parent theme!"
+msgstr "Ficheiro modelo %s não existe no tema superior!"
+
+#: one-click-child-theme.php:160
+#, php-format
+msgid "Template file %s already exists in child theme!"
+msgstr "Ficheiro modelo %s já existe no tema dependente!"
+
+#: one-click-child-theme.php:167
+#, php-format
+msgid "Failed to duplicate file %s!"
+msgstr "Falhou ao duplicar o ficheiro %s!"
+
+#: one-click-child-theme.php:174
+#, php-format
+msgid "<a href=\"%s\">File %s created!</a>"
+msgstr "<a href=\"%s\">Ficheiro %s criado!</a>"
+
+#: one-click-child-theme.php:188
+#, php-format
+msgid "Failed to delete file %s!"
+msgstr "Falhou ao apagar o ficheiro %s!"
+
+#: one-click-child-theme.php:195
+#, php-format
+msgid "404 File not found at %s!"
+msgstr "Ficheiro 404 não encontrado em %s!"
+
+#: one-click-child-theme.php:202
+#, php-format
+msgid "Unrecognized mimetype at %s!"
+msgstr "Tipo de media desconhecido em %s!"
+
+#: one-click-child-theme.php:209
+#, php-format
+msgid "Failed to create file %s!"
+msgstr "Falhou ao criar o ficheiro %s!"
+
+#: one-click-child-theme.php:215
+msgid "Successfully changed screenshot."
+msgstr "Captura de ecrã modificada com sucesso"
+
+#: one-click-child-theme.php:232
+msgid "Make a Child Theme"
+msgstr "Criar um tema dependente"
+
+#: one-click-child-theme.php:233
+msgid "Child Theme"
+msgstr "Tema dependente"
+
+#: one-click-child-theme.php:556
+msgid "Theme directory already exists!"
+msgstr "Directório do tema já existe!"
+
+#: templates/create_child_form.php:16
+msgid "Create a Child Theme"
+msgstr "Criar um tema dependente"
+
+#: templates/create_child_form.php:18
+#, php-format
+msgid ""
+"Fill out this form to create a child theme based on %s (your current theme)."
+msgstr ""
+"Preencha este formulário para criar um tema dependente com base no %s (o seu "
+"tema actual)."
+
+#: templates/create_child_form.php:25
+msgid "Theme Name"
+msgstr "Nome do tema"
+
+#: templates/create_child_form.php:28
+msgid "Give your theme a name."
+msgstr "Dê um nome ao seu tema."
+
+#: templates/create_child_form.php:32
+msgid "Description"
+msgstr "Descrição"
+
+#: templates/create_child_form.php:35
+msgid "Describe your theme."
+msgstr "Descreva seu tema."
+
+#: templates/create_child_form.php:39
+msgid "Author"
+msgstr "Autor"
+
+#: templates/create_child_form.php:42
+msgid "Your name."
+msgstr "O seu nome."
+
+#: templates/create_child_form.php:47
+msgid "Create Child"
+msgstr "Criar tema dependente"
+
+#: templates/is_child_already.php:10
+#, php-format
+msgid "%s is already a child theme"
+msgstr "%s já é um tema dependente"
+
+#: templates/is_child_already.php:14
+msgid "Child theme needs repair"
+msgstr "O tema dependente necessita de reparação"
+
+#: templates/is_child_already.php:15
+msgid ""
+"Detected outdated child theme mechanism. Click the button below to attempt a "
+"one-click repair."
+msgstr ""
+"Foi detectado um mecanismo desactualizado de tema dependente. Clique no "
+"botão abaixo para tentar uma reparação imediata."
+
+#: templates/is_child_already.php:20
+msgid "Repair Child Theme"
+msgstr "Reparar tema dependente"
+
+#: templates/is_child_already.php:28
+msgid "Child files"
+msgstr "Ficheiros do tema dependente"
+
+#: templates/is_child_already.php:29
+msgid ""
+"If you wish to modify the behavior of a template file, select it and click "
+"the \"Copy Template\" button below."
+msgstr ""
+"Se quiser modificar o comportamento de um ficheiro de modelo, seleccione-o e "
+"clique no botão \"Copiar modelo\" abaixo."
+
+#: templates/is_child_already.php:35
+msgid "Template File"
+msgstr "Ficheiro modelo"
+
+#: templates/is_child_already.php:48
+msgid "Copy Template"
+msgstr "Copiar modelo"
+
+#: templates/is_child_already.php:55
+msgid "Screenshot"
+msgstr "Captura de ecrã"
+
+#: templates/is_child_already.php:56
+msgid ""
+"By default One-Click Child theme uses the parent theme’s screenshot. You can "
+"use WordPress.com’s mshot service to replace the current child theme’s "
+"screenshot with a screenshot of your current web site’s homepage (if "
+"publicly accessible over the web)."
+msgstr ""
+"Por omissão o One-Click Child Theme utiliza a captura de ecrã do tema "
+"superior. Pode utilizar o serviço mshot do WordPress.com para substituir a "
+"actual captura de ecrã do tema dependente com uma captura de ecrã da página "
+"inicial do seu site (se estiver acessível publicamente na internet)."
+
+#: templates/is_child_already.php:65
+msgid "No screenshot"
+msgstr "Sem captura de ecrã"
+
+#: templates/is_child_already.php:70
+msgid "Current"
+msgstr "Actual"
+
+#: templates/is_child_already.php:76
+msgid "mShot"
+msgstr "mShot"
+
+#: templates/is_child_already.php:81
+msgid "Replace Screenshot"
+msgstr "Substituir captura de ecrã"
+
+#: templates/is_child_already.php:85
+msgid "Grandchild theme?"
+msgstr "Tema duplamente dependente?"
+
+#: templates/is_child_already.php:86
+msgid ""
+"WordPress has no formal support for theme grandchildren. No other actions "
+"currently supported in One Click Child Theme."
+msgstr ""
+"O WordPress não tem suporte formal para temas duplamente dependentes. "
+"Actualmente não são suportadas mais acções pelo One Click Child Theme."
