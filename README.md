@@ -1,10 +1,10 @@
 # One-Click Child Theme #
-**Contributors:** tychay
-**Donate link:** http://www.kiva.org/lender/tychay
-**Tags:** theme, child theme, child theme creator, child theme creator, CSS, stylesheet, custom theme, customize theme, shared hosting
-**Requires at least:** 3.0
-**Tested up to:** 4.1.1
-**Stable tag:** trunk
+**Contributors:** tychay    
+**Donate link:** http://www.kiva.org/lender/tychay    
+**Tags:** theme, child theme, child theme creator, child theme creator, CSS, stylesheet, custom theme, customize theme, shared hosting    
+**Requires at least:** 3.0    
+**Tested up to:** 4.1.1    
+**Stable tag:** trunk    
 
 Adds a Theme option to any active theme allowing you to make a child theme.
 
@@ -49,12 +49,15 @@ that will allow you to create a child theme based on the current active theme.
 
 ## Screenshots ##
 
-![](screenshot-1.png)
-To use the plugin, click one of these two palces in the Appearance section of your `wp_admin` 
-![](screenshot-2.png)
-Fill out this form
-![](screenshot-3.png)
-You will see the theme will be successfully child-themed, but will track the parent theme correctly.
+###1. To use the plugin, click one of these two palces in the Appearance section of your `wp_admin` ###
+![To use the plugin, click one of these two palces in the Appearance section of your `wp_admin` ](https://ps.w.org/one-click-child-theme/assets/screenshot-1.png)
+
+###2. Fill out this form###
+![Fill out this form](https://ps.w.org/one-click-child-theme/assets/screenshot-2.png)
+
+###3. You will see the theme will be successfully child-themed, but will track the parent theme correctly.###
+![You will see the theme will be successfully child-themed, but will track the parent theme correctly.](https://ps.w.org/one-click-child-theme/assets/screenshot-3.png)
+
 
 ## Frequently Asked Questions ##
 
@@ -62,12 +65,24 @@ You will see the theme will be successfully child-themed, but will track the par
 
 You can wait for the theme to get updated and have it break it, or you can:
 
-1. Go through the steps for installing and running the plugin above to create a child theme
-2. Click on the [Appearance &gt; Editor](http://codex.wordpress.org/Appearance_Editor_SubPanel) in your admin dashboard menu (or network admin menu if multi-site).
-3. Select the parent theme in the drop down on the right, click `Select` and make sure you are editing the file `style.css` (select on the right).
-4. Copy the changes you made, if you managed to remember them.
-5. Select the child theme you created to the drop down in the left (you should be editing `style.css`).
-6. Paste your changes to the end of the file.
+###4. Go through the steps for installing and running the plugin above to create a child theme###
+[missing image]
+
+###5. Click on the [Appearance &gt; Editor](http://codex.wordpress.org/Appearance_Editor_SubPanel) in your admin dashboard menu (or network admin menu if multi-site).###
+[missing image]
+
+###6. Select the parent theme in the drop down on the right, click `Select` and make sure you are editing the file `style.css` (select on the right).###
+[missing image]
+
+###7. Copy the changes you made, if you managed to remember them.###
+[missing image]
+
+###8. Select the child theme you created to the drop down in the left (you should be editing `style.css`).###
+[missing image]
+
+###9. Paste your changes to the end of the file.###
+[missing image]
+
 
 ### Your plugin broke my site! ###
 
@@ -89,9 +104,15 @@ our best to help you.
 I really need to update the screenshot. It's still there, but the location has
 changed as WordPress has been upgraded.
 
-1. Go to the `Appearance` tab
-2. Click on the Active theme (it should say "Theme Details" when you mouseover)
-3. An overlay appears. The Theme option button "Child Theme" is there
+###10. Go to the `Appearance` tab###
+[missing image]
+
+###11. Click on the Active theme (it should say "Theme Details" when you mouseover)###
+[missing image]
+
+###12. An overlay appears. The Theme option button "Child Theme" is there###
+[missing image]
+
 
 ### When I go to the Child Theme menu, it says "X is already a child theme" and I can't create a child theme. ###
 
@@ -152,7 +173,7 @@ the experience may be a little like trying to get a vending machine to accept
 a crumpled dollar bill — Americans know what I mean. Suffice it to say that
 you might have to hit reload a couple times, or just fiddle around a bit.
 
-### Why should I use your plugin and not [_insert competitor here_](https://wordpress.org/plugins/search.php?q###child+theme) =
+= Why should I use your plugin and not [_insert competitor here_](https://wordpress.org/plugins/search.php?q=child+theme) =
 
 What? People have forked my idea because I left [Automattic](http://automattic.com)
 for [Wikimedia](http://wikimediafoundation.org/wiki/Home) three years ago?
@@ -225,4 +246,5 @@ hook you up!
 **Version 1.0**
 
 * Initial release
+
 
