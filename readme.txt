@@ -1,10 +1,10 @@
 === One-Click Child Theme ===
-Contributors: tychay
-Donate link: http://www.kiva.org/lender/tychay
-Tags: theme, child theme, child theme creator, child theme creator, CSS, stylesheet, custom theme, customize theme, shared hosting
-Requires at least: 3.0
-Tested up to: 4.1.1
-Stable tag: trunk
+Contributors: tychay  
+Donate link: http://www.kiva.org/lender/tychay  
+Tags: theme, child theme, child theme creator, child theme creator, CSS, stylesheet, custom theme, customize theme, shared hosting  
+Requires at least: 3.0  
+Tested up to: 4.1.1  
+Stable tag: trunk  
 
 Adds a Theme option to any active theme allowing you to make a child theme.
 
