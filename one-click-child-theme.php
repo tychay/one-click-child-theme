@@ -416,7 +416,6 @@ class OneClickChildTheme {
 		}
 		$child_theme_dir = get_stylesheet_directory();
 		$template_dir = get_template_directory();
-				var_dump('bar');
 		if ( !file_exists($template_dir.'/'.$filename) ) {
 			$this->_redirect(
 				$this->_themePageUrl,
